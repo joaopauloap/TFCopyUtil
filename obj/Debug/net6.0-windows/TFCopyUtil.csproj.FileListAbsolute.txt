@@ -1,0 +1,16 @@
+C:\Users\jporto\source\repos\TFCopyUtil\bin\Debug\net6.0-windows\TFCopyUtil.exe
+C:\Users\jporto\source\repos\TFCopyUtil\bin\Debug\net6.0-windows\TFCopyUtil.deps.json
+C:\Users\jporto\source\repos\TFCopyUtil\bin\Debug\net6.0-windows\TFCopyUtil.runtimeconfig.json
+C:\Users\jporto\source\repos\TFCopyUtil\bin\Debug\net6.0-windows\TFCopyUtil.dll
+C:\Users\jporto\source\repos\TFCopyUtil\bin\Debug\net6.0-windows\TFCopyUtil.pdb
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.Form1.resources
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.csproj.GenerateResource.cache
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.AssemblyInfoInputs.cache
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.AssemblyInfo.cs
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.csproj.CoreCompileInputs.cache
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.dll
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\refint\TFCopyUtil.dll
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.pdb
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\TFCopyUtil.genruntimeconfig.cache
+C:\Users\jporto\source\repos\TFCopyUtil\obj\Debug\net6.0-windows\ref\TFCopyUtil.dll
