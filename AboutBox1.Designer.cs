@@ -88,7 +88,7 @@
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new Size(451, 33);
             labelProductName.TabIndex = 19;
-            labelProductName.Text = "TF Util";
+            labelProductName.Text = "Nome do Projeto";
             labelProductName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelVersion
@@ -100,7 +100,7 @@
             labelVersion.Name = "labelVersion";
             labelVersion.Size = new Size(451, 33);
             labelVersion.TabIndex = 0;
-            labelVersion.Text = "Versão 1.1";
+            labelVersion.Text = "Versão";
             labelVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelCopyright

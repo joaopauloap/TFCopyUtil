@@ -151,6 +151,10 @@ namespace TFCopyUtil
             {
                 richTextBox1.Text = File.ReadAllText("paths.txt");
             }
+            catch (FileNotFoundException ex)
+            {
+
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um Erro: " + ex.Message);

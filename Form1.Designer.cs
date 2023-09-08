@@ -211,7 +211,7 @@
             // 
             // button2
             // 
-            button2.BackgroundImage = Properties.Resources.bradesco;
+            button2.BackgroundImage = TFUtil.Properties.Resources.bradesco;
             button2.BackgroundImageLayout = ImageLayout.Stretch;
             button2.Cursor = Cursors.Hand;
             button2.Dock = DockStyle.Fill;
