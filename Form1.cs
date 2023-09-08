@@ -9,10 +9,19 @@ namespace TFCopyUtil
     {
         static string defaultClientPath = @"C:\CLIENT\";
         string destinationRootFolder = defaultClientPath + "localwkst";
+        AboutBox1 aboutBox1 = new AboutBox1();
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                destinationRootFolder = defaultClientPath;
+            }
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -22,9 +31,14 @@ namespace TFCopyUtil
                 folderBrowserDialog1.ShowDialog();
                 destinationRootFolder = folderBrowserDialog1.SelectedPath;
             }
-            else
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
             {
-                destinationRootFolder = defaultClientPath;
+                folderBrowserDialog1.ShowDialog();
+                destinationRootFolder = folderBrowserDialog1.SelectedPath;
             }
         }
 
@@ -35,6 +49,8 @@ namespace TFCopyUtil
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
                 string sourceFilePath = line;
+                string relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
+                string destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
 
                 if (checkBox1.Checked)
                 {
@@ -42,13 +58,17 @@ namespace TFCopyUtil
                     sourceFilePath = sourceFilePath.Replace(".java", ".class");
                 }
 
+                if (radioButton3.Checked)
+                {
+                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("workspaceFDDB"));
+                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                }
+
                 try
                 {
-                    string relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
-                    string destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
                     Directory.CreateDirectory(Path.GetDirectoryName(destinationFilePath));
-
                     File.Copy(sourceFilePath, destinationFilePath, true);
+
                     MessageBox.Show($"Arquivos copiados com sucesso.");
                 }
                 catch (Exception ex)
@@ -69,15 +89,28 @@ namespace TFCopyUtil
                 WorkingDirectory = defaultClientPath,
                 FileName = "cscript",
                 Arguments = $@"{filePath} {arguments}",
+                CreateNoWindow = true
             };
 
             using (Process process = new Process())
             {
                 process.StartInfo = processInfo;
+                Cursor.Current = Cursors.WaitCursor;
                 process.Start();
-
                 process.WaitForExit();
+                Cursor.Current = Cursors.Default;
             }
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutBox1.Show();
+        }
+
     }
 }

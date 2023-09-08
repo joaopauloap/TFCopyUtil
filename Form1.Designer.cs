@@ -33,6 +33,7 @@
             richTextBox1 = new RichTextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            radioButton3 = new RadioButton();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             label1 = new Label();
@@ -50,7 +51,10 @@
             abrirToolStripMenuItem = new ToolStripMenuItem();
             salvarToolStripMenuItem = new ToolStripMenuItem();
             salvarComoToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator2 = new ToolStripSeparator();
+            sairToolStripMenuItem = new ToolStripMenuItem();
             toolStripDropDownButton2 = new ToolStripDropDownButton();
+            preferênciasToolStripMenuItem = new ToolStripMenuItem();
             toolStripDropDownButton3 = new ToolStripDropDownButton();
             manualDoUsuárioToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -75,6 +79,7 @@
             // 
             splitContainer1.BorderStyle = BorderStyle.Fixed3D;
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.FixedPanel = FixedPanel.Panel2;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -104,32 +109,42 @@
             // 
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
             tableLayoutPanel1.Controls.Add(splitContainer2, 0, 2);
             tableLayoutPanel1.Controls.Add(panel3, 0, 1);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Dock = DockStyle.Right;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 334F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 301F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(263, 540);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
             // 
+            panel1.Controls.Add(radioButton3);
             panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(radioButton2);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(5, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 127);
+            panel1.Size = new Size(253, 160);
             panel1.TabIndex = 10;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(10, 76);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(240, 29);
+            radioButton3.TabIndex = 11;
+            radioButton3.Text = "Exportar WorkspaceFDDB";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
             // 
             // radioButton1
             // 
@@ -142,11 +157,12 @@
             radioButton1.TabStop = true;
             radioButton1.Text = "Bradesco Client (localwkst)";
             radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(10, 76);
+            radioButton2.Location = new Point(10, 111);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(96, 29);
             radioButton2.TabIndex = 8;
@@ -188,7 +204,7 @@
             button1.Name = "button1";
             button1.Size = new Size(178, 59);
             button1.TabIndex = 0;
-            button1.Text = "Copiar Arquivos";
+            button1.Text = "Transferir Arquivos";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -214,9 +230,9 @@
             panel3.Controls.Add(label2);
             panel3.Controls.Add(checkBox1);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(5, 140);
+            panel3.Location = new Point(5, 173);
             panel3.Name = "panel3";
-            panel3.Size = new Size(253, 328);
+            panel3.Size = new Size(253, 295);
             panel3.TabIndex = 12;
             // 
             // checkBox2
@@ -247,9 +263,9 @@
             checkBox1.CheckState = CheckState.Checked;
             checkBox1.Location = new Point(10, 45);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(201, 29);
+            checkBox1.Size = new Size(197, 29);
             checkBox1.TabIndex = 14;
-            checkBox1.Text = "Converter para saída";
+            checkBox1.Text = "Interpolar saída java";
             checkBox1.UseVisualStyleBackColor = true;
             // 
             // toolStrip1
@@ -265,7 +281,7 @@
             // toolStripDropDownButton1
             // 
             toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, abrirToolStripMenuItem, salvarToolStripMenuItem, salvarComoToolStripMenuItem });
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, abrirToolStripMenuItem, salvarToolStripMenuItem, salvarComoToolStripMenuItem, toolStripSeparator2, sairToolStripMenuItem });
             toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
             toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -275,35 +291,54 @@
             // novoToolStripMenuItem
             // 
             novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            novoToolStripMenuItem.Size = new Size(270, 34);
+            novoToolStripMenuItem.Size = new Size(227, 34);
             novoToolStripMenuItem.Text = "Novo";
             // 
             // abrirToolStripMenuItem
             // 
             abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            abrirToolStripMenuItem.Size = new Size(270, 34);
+            abrirToolStripMenuItem.Size = new Size(227, 34);
             abrirToolStripMenuItem.Text = "Abrir";
             // 
             // salvarToolStripMenuItem
             // 
             salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            salvarToolStripMenuItem.Size = new Size(270, 34);
+            salvarToolStripMenuItem.Size = new Size(227, 34);
             salvarToolStripMenuItem.Text = "Salvar";
             // 
             // salvarComoToolStripMenuItem
             // 
             salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            salvarComoToolStripMenuItem.Size = new Size(270, 34);
+            salvarComoToolStripMenuItem.Size = new Size(227, 34);
             salvarComoToolStripMenuItem.Text = "Salvar Como...";
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(224, 6);
+            // 
+            // sairToolStripMenuItem
+            // 
+            sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            sairToolStripMenuItem.Size = new Size(227, 34);
+            sairToolStripMenuItem.Text = "Sair";
+            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // toolStripDropDownButton2
             // 
             toolStripDropDownButton2.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripDropDownButton2.DropDownItems.AddRange(new ToolStripItem[] { preferênciasToolStripMenuItem });
             toolStripDropDownButton2.Image = (Image)resources.GetObject("toolStripDropDownButton2.Image");
             toolStripDropDownButton2.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             toolStripDropDownButton2.Size = new Size(75, 29);
             toolStripDropDownButton2.Text = "Editar";
+            // 
+            // preferênciasToolStripMenuItem
+            // 
+            preferênciasToolStripMenuItem.Name = "preferênciasToolStripMenuItem";
+            preferênciasToolStripMenuItem.Size = new Size(208, 34);
+            preferênciasToolStripMenuItem.Text = "Preferências";
             // 
             // toolStripDropDownButton3
             // 
@@ -331,6 +366,7 @@
             sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
             sobreToolStripMenuItem.Size = new Size(264, 34);
             sobreToolStripMenuItem.Text = "Sobre";
+            sobreToolStripMenuItem.Click += sobreToolStripMenuItem_Click;
             // 
             // panel2
             // 
@@ -350,7 +386,7 @@
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "TF Copy Util (Alpha V1.1)";
+            Text = "TF Util (Alpha V1.1)";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -400,5 +436,9 @@
         private Panel panel3;
         private CheckBox checkBox2;
         private Button button2;
+        private RadioButton radioButton3;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem sairToolStripMenuItem;
+        private ToolStripMenuItem preferênciasToolStripMenuItem;
     }
 }

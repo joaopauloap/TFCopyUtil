@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Description>Programa desenvolvido por "João Paulo Porto" para auxiliar no desenvolvimento de projetos no Bradesco Terminal Financeiro.</Description>
   </PropertyGroup>
 
   <ItemGroup>
