@@ -112,5 +112,49 @@ namespace TFCopyUtil
             aboutBox1.Show();
         }
 
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+        }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Text Files|*.txt|All Files|*.*";
+            openFileDialog1.Title = "Open Text File";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    richTextBox1.Text = File.ReadAllText(openFileDialog1.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                File.WriteAllText("paths.txt", richTextBox1.Text);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                richTextBox1.Text = File.ReadAllText("paths.txt");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+            }
+        }
     }
 }

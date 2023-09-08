@@ -60,6 +60,7 @@
             toolStripSeparator1 = new ToolStripSeparator();
             sobreToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
+            openFileDialog1 = new OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -293,12 +294,14 @@
             novoToolStripMenuItem.Name = "novoToolStripMenuItem";
             novoToolStripMenuItem.Size = new Size(227, 34);
             novoToolStripMenuItem.Text = "Novo";
+            novoToolStripMenuItem.Click += novoToolStripMenuItem_Click;
             // 
             // abrirToolStripMenuItem
             // 
             abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             abrirToolStripMenuItem.Size = new Size(227, 34);
             abrirToolStripMenuItem.Text = "Abrir";
+            abrirToolStripMenuItem.Click += abrirToolStripMenuItem_Click;
             // 
             // salvarToolStripMenuItem
             // 
@@ -377,6 +380,10 @@
             panel2.Size = new Size(987, 544);
             panel2.TabIndex = 2;
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -387,6 +394,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "TF Util (Alpha V1.1)";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -440,5 +449,6 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem sairToolStripMenuItem;
         private ToolStripMenuItem preferênciasToolStripMenuItem;
+        private OpenFileDialog openFileDialog1;
     }
 }
