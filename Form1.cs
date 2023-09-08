@@ -7,8 +7,8 @@ namespace TFCopyUtil
 {
     public partial class Form1 : Form
     {
-        static string defaultClientPath = @"C:\CLIENT\localwkst";
-        string destinationRootFolder = defaultClientPath;
+        static string defaultClientPath = @"C:\CLIENT\";
+        string destinationRootFolder = defaultClientPath + "localwkst";
 
         public Form1()
         {
@@ -49,13 +49,35 @@ namespace TFCopyUtil
                     Directory.CreateDirectory(Path.GetDirectoryName(destinationFilePath));
 
                     File.Copy(sourceFilePath, destinationFilePath, true);
+                    MessageBox.Show($"Arquivos copiados com sucesso.");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
+                    MessageBox.Show($"Ocorreu um erro: {ex.Message}");
                 }
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            string filePath = @"C:\CLIENT\client.js";
+            string arguments = @"-a INTE -p TerminalFinanceiro -x -d";
+
+            ProcessStartInfo processInfo = new ProcessStartInfo
+            {
+                WorkingDirectory = defaultClientPath,
+                FileName = "cscript",
+                Arguments = $@"{filePath} {arguments}",
+            };
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = processInfo;
+                process.Start();
+
+                process.WaitForExit();
+            }
+        }
     }
 }
