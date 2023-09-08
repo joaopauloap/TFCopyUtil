@@ -20,7 +20,8 @@ namespace TFCopyUtil
         {
             if (radioButton1.Checked)
             {
-                destinationRootFolder = defaultClientPath;
+                destinationRootFolder = defaultClientPath + "localwkst";
+                checkBox1.Checked = true;
             }
         }
 
@@ -28,8 +29,9 @@ namespace TFCopyUtil
         {
             if (radioButton2.Checked)
             {
+                checkBox1.Checked = true;
                 folderBrowserDialog1.ShowDialog();
-                destinationRootFolder = folderBrowserDialog1.SelectedPath;
+                destinationRootFolder = folderBrowserDialog1.SelectedPath + "\\localwkst";
             }
         }
 
@@ -37,6 +39,7 @@ namespace TFCopyUtil
         {
             if (radioButton3.Checked)
             {
+                checkBox1.Checked = false;
                 folderBrowserDialog1.ShowDialog();
                 destinationRootFolder = folderBrowserDialog1.SelectedPath;
             }
@@ -49,8 +52,8 @@ namespace TFCopyUtil
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
                 string sourceFilePath = line;
-                string relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
-                string destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                string relativePath;
+                string destinationFilePath = "";
 
                 if (checkBox1.Checked)
                 {
@@ -58,6 +61,16 @@ namespace TFCopyUtil
                     sourceFilePath = sourceFilePath.Replace(".java", ".class");
                 }
 
+                if (radioButton1.Checked)
+                {
+                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
+                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                }
+                if (radioButton2.Checked)
+                {
+                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
+                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                }
                 if (radioButton3.Checked)
                 {
                     relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("workspaceFDDB"));
@@ -158,6 +171,28 @@ namespace TFCopyUtil
             catch (Exception ex)
             {
                 MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+            }
+        }
+
+        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void salvarComoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Text Files|*.txt";
+            saveFileDialog.Title = "Save Text File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+            {
+                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
+                {
+                    writer.Write(richTextBox1.Text);
+                }
             }
         }
     }

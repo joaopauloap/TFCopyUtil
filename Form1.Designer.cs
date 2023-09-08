@@ -49,7 +49,6 @@
             toolStripDropDownButton1 = new ToolStripDropDownButton();
             novoToolStripMenuItem = new ToolStripMenuItem();
             abrirToolStripMenuItem = new ToolStripMenuItem();
-            salvarToolStripMenuItem = new ToolStripMenuItem();
             salvarComoToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
             sairToolStripMenuItem = new ToolStripMenuItem();
@@ -61,6 +60,7 @@
             sobreToolStripMenuItem = new ToolStripMenuItem();
             panel2 = new Panel();
             openFileDialog1 = new OpenFileDialog();
+            saveFileDialog1 = new SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -139,7 +139,7 @@
             // radioButton3
             // 
             radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(10, 76);
+            radioButton3.Location = new Point(10, 111);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(240, 29);
             radioButton3.TabIndex = 11;
@@ -163,11 +163,11 @@
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(10, 111);
+            radioButton2.Location = new Point(10, 76);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(96, 29);
+            radioButton2.Size = new Size(180, 29);
             radioButton2.TabIndex = 8;
-            radioButton2.Text = "Outro...";
+            radioButton2.Text = "Exportar localwkst";
             radioButton2.UseVisualStyleBackColor = true;
             radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
@@ -282,7 +282,7 @@
             // toolStripDropDownButton1
             // 
             toolStripDropDownButton1.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, abrirToolStripMenuItem, salvarToolStripMenuItem, salvarComoToolStripMenuItem, toolStripSeparator2, sairToolStripMenuItem });
+            toolStripDropDownButton1.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, abrirToolStripMenuItem, salvarComoToolStripMenuItem, toolStripSeparator2, sairToolStripMenuItem });
             toolStripDropDownButton1.Image = (Image)resources.GetObject("toolStripDropDownButton1.Image");
             toolStripDropDownButton1.ImageTransparentColor = Color.Magenta;
             toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -292,38 +292,33 @@
             // novoToolStripMenuItem
             // 
             novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            novoToolStripMenuItem.Size = new Size(227, 34);
+            novoToolStripMenuItem.Size = new Size(270, 34);
             novoToolStripMenuItem.Text = "Novo";
             novoToolStripMenuItem.Click += novoToolStripMenuItem_Click;
             // 
             // abrirToolStripMenuItem
             // 
             abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            abrirToolStripMenuItem.Size = new Size(227, 34);
+            abrirToolStripMenuItem.Size = new Size(270, 34);
             abrirToolStripMenuItem.Text = "Abrir";
             abrirToolStripMenuItem.Click += abrirToolStripMenuItem_Click;
-            // 
-            // salvarToolStripMenuItem
-            // 
-            salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            salvarToolStripMenuItem.Size = new Size(227, 34);
-            salvarToolStripMenuItem.Text = "Salvar";
             // 
             // salvarComoToolStripMenuItem
             // 
             salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            salvarComoToolStripMenuItem.Size = new Size(227, 34);
+            salvarComoToolStripMenuItem.Size = new Size(270, 34);
             salvarComoToolStripMenuItem.Text = "Salvar Como...";
+            salvarComoToolStripMenuItem.Click += salvarComoToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(224, 6);
+            toolStripSeparator2.Size = new Size(267, 6);
             // 
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(227, 34);
+            sairToolStripMenuItem.Size = new Size(270, 34);
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
@@ -433,7 +428,6 @@
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripMenuItem novoToolStripMenuItem;
         private ToolStripMenuItem abrirToolStripMenuItem;
-        private ToolStripMenuItem salvarToolStripMenuItem;
         private ToolStripMenuItem salvarComoToolStripMenuItem;
         private ToolStripDropDownButton toolStripDropDownButton2;
         private ToolStripDropDownButton toolStripDropDownButton3;
@@ -450,5 +444,6 @@
         private ToolStripMenuItem sairToolStripMenuItem;
         private ToolStripMenuItem preferênciasToolStripMenuItem;
         private OpenFileDialog openFileDialog1;
+        private SaveFileDialog saveFileDialog1;
     }
 }
