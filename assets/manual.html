@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Ajuda do TF Util</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .help-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        .help-section.expanded {
+            background-color: #e0f0f0;
+        }
+
+        .help-section h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manual de Ajuda</h1>
+        <div class="help-section" id="section1">
+            <h2>Seção 1</h2>
+            <p>Texto explicativo da seção 1.</p>
+        </div>
+        <div class="help-section" id="section2">
+            <h2>Seção 2</h2>
+            <p>Texto explicativo da seção 2.</p>
+        </div>
+        <div class="help-section" id="section3">
+            <h2>Seção 3</h2>
+            <p>Texto explicativo da seção 3.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.help-section');
+
+            sections.forEach(section => {
+                section.addEventListener('click', function() {
+                    this.classList.toggle('expanded');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

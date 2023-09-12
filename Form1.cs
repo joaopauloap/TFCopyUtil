@@ -2,26 +2,62 @@ using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TFUtil;
 using static System.Windows.Forms.Design.AxImporter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TFCopyUtil
 {
     public partial class Form1 : Form
     {
-        static string defaultClientPath = @"C:\CLIENT\";
+        static string defaultClientPath = @"C:\CLIENT";
+        static string defaultWorkspacePath = @"C:\workspaceFDDB";
+        static string defaultEditorPath = @"C:\Windows\notepad.exe";
         string destinationRootFolder = defaultClientPath + "localwkst";
-        AboutBox1 aboutBox1 = new AboutBox1();
 
+        AboutBox1 aboutBox1 = new AboutBox1();
+       
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public string loadCfg()
+        {
+            string cfgFileContent="";
+
+            try
+            {
+                cfgFileContent = File.ReadAllText("config.cfg");                
+            }
+            catch (FileNotFoundException ex)
+            {
+                using (StreamWriter writer = new StreamWriter("config.cfg"))
+                {
+                    cfgFileContent = "C:\\CLIENT\nC:\\workspaceFDDB\nC:\\Windows\\notepad.exe";
+                    writer.Write(cfgFileContent);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+            }
+            finally
+            {
+                string[] lines = cfgFileContent.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                defaultClientPath = lines[0];
+                defaultWorkspacePath = lines[1];
+                defaultEditorPath = lines[2];
+            }
+
+            return cfgFileContent;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
             {
-                destinationRootFolder = defaultClientPath + "localwkst";
+                destinationRootFolder = defaultClientPath + "\\localwkst";
                 checkBox1.Checked = true;
             }
         }
@@ -48,6 +84,8 @@ namespace TFCopyUtil
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool isSuccess = true;
+
             foreach (string line in richTextBox1.Lines)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
@@ -83,19 +121,28 @@ namespace TFCopyUtil
                     Directory.CreateDirectory(Path.GetDirectoryName(destinationFilePath));
                     File.Copy(sourceFilePath, destinationFilePath, true);
 
-                    MessageBox.Show($"Arquivos copiados com sucesso.");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                    isSuccess = false;
                 }
+            }
+
+            if (isSuccess)
+            {
+                MessageBox.Show($"Arquivos copiados com sucesso.");
+            }
+            else
+            {
+                MessageBox.Show($"Alguns arquivos podem não ter sido copiados.");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string filePath = @$"{defaultClientPath}client.js";
+            string filePath = @$"{defaultClientPath}\client.js";
             string arguments = @"-a INTE -p TerminalFinanceiro -x -d";
 
             ProcessStartInfo processInfo = new ProcessStartInfo
@@ -161,6 +208,8 @@ namespace TFCopyUtil
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            loadCfg();
+
             try
             {
                 richTextBox1.Text = File.ReadAllText("paths.txt");
@@ -173,11 +222,6 @@ namespace TFCopyUtil
             {
                 MessageBox.Show("Ocorreu um Erro: " + ex.Message);
             }
-        }
-
-        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void salvarComoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -199,7 +243,7 @@ namespace TFCopyUtil
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string path = @$"{defaultClientPath}localwkst";
+            string path = @$"{defaultClientPath}\localwkst";
 
             ProcessStartInfo processInfo = new ProcessStartInfo
             {
@@ -221,13 +265,11 @@ namespace TFCopyUtil
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string path = @$"C:\workspaceFDDB";
-
             ProcessStartInfo processInfo = new ProcessStartInfo
             {
                 WorkingDirectory = defaultClientPath,
                 FileName = "explorer",
-                Arguments = path,
+                Arguments = defaultWorkspacePath,
                 CreateNoWindow = true
             };
 
@@ -243,12 +285,12 @@ namespace TFCopyUtil
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string filePath = @$"{defaultClientPath}INTE\TerminalFinanceiro\log\bradesco.log";
+            string filePath = @$"{defaultClientPath}\INTE\TerminalFinanceiro\log\bradesco.log";
 
             ProcessStartInfo processInfo = new ProcessStartInfo
             {
                 WorkingDirectory = defaultClientPath,
-                FileName = "notepad",
+                FileName = defaultEditorPath,
                 Arguments = filePath,
                 CreateNoWindow = true
             };
@@ -261,6 +303,18 @@ namespace TFCopyUtil
                 process.WaitForExit();
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void preferênciasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreferenciasForm preferenciasForm = new PreferenciasForm();
+            preferenciasForm.Show();
+        }
+
+        private void manualDoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, helpProvider1.HelpNamespace);
+
         }
     }
 }

@@ -8,7 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Description>Programa desenvolvido para auxiliar no desenvolvimento de projetos no Bradesco Terminal Financeiro. 
-~JP~</Description>
+
+Agradecimentos: Elisson Barbieri, Daniel Junqueira.</Description>
+    <Authors>João Paulo Porto</Authors>
   </PropertyGroup>
 
   <ItemGroup>

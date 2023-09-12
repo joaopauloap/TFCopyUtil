@@ -67,6 +67,7 @@
             panel2 = new Panel();
             openFileDialog1 = new OpenFileDialog();
             saveFileDialog1 = new SaveFileDialog();
+            helpProvider1 = new HelpProvider();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -404,8 +405,9 @@
             // preferênciasToolStripMenuItem
             // 
             preferênciasToolStripMenuItem.Name = "preferênciasToolStripMenuItem";
-            preferênciasToolStripMenuItem.Size = new Size(208, 34);
+            preferênciasToolStripMenuItem.Size = new Size(270, 34);
             preferênciasToolStripMenuItem.Text = "Preferências";
+            preferênciasToolStripMenuItem.Click += preferênciasToolStripMenuItem_Click;
             // 
             // toolStripDropDownButton3
             // 
@@ -422,6 +424,7 @@
             manualDoUsuárioToolStripMenuItem.Name = "manualDoUsuárioToolStripMenuItem";
             manualDoUsuárioToolStripMenuItem.Size = new Size(264, 34);
             manualDoUsuárioToolStripMenuItem.Text = "Manual do Usuário";
+            manualDoUsuárioToolStripMenuItem.Click += manualDoUsuárioToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -448,6 +451,10 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // helpProvider1
+            // 
+            helpProvider1.HelpNamespace = "manual.html";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -457,7 +464,8 @@
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "TF Util (Alpha V1.2)";
+            helpProvider1.SetShowHelp(this, true);
+            Text = "TF Util (Alpha V1.3)";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);
@@ -522,5 +530,6 @@
         private Button button4;
         private Button button3;
         private Label label3;
+        private HelpProvider helpProvider1;
     }
 }
