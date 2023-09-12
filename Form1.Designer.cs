@@ -37,13 +37,19 @@
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             label1 = new Label();
-            splitContainer2 = new SplitContainer();
-            button1 = new Button();
-            button2 = new Button();
             panel3 = new Panel();
             checkBox2 = new CheckBox();
             label2 = new Label();
             checkBox1 = new CheckBox();
+            splitContainer2 = new SplitContainer();
+            button1 = new Button();
+            button2 = new Button();
+            panel4 = new Panel();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
+            label3 = new Label();
             folderBrowserDialog1 = new FolderBrowserDialog();
             toolStrip1 = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
@@ -67,11 +73,12 @@
             splitContainer1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
-            panel3.SuspendLayout();
+            panel4.SuspendLayout();
             toolStrip1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -112,15 +119,17 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(panel1, 0, 0);
-            tableLayoutPanel1.Controls.Add(splitContainer2, 0, 2);
             tableLayoutPanel1.Controls.Add(panel3, 0, 1);
+            tableLayoutPanel1.Controls.Add(splitContainer2, 0, 3);
+            tableLayoutPanel1.Controls.Add(panel4, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Right;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 301F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 140F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 157F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
             tableLayoutPanel1.Size = new Size(263, 540);
             tableLayoutPanel1.TabIndex = 1;
             // 
@@ -133,7 +142,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(5, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 160);
+            panel1.Size = new Size(253, 161);
             panel1.TabIndex = 10;
             // 
             // radioButton3
@@ -180,60 +189,15 @@
             label1.TabIndex = 9;
             label1.Text = "Destino";
             // 
-            // splitContainer2
-            // 
-            splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(5, 476);
-            splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            splitContainer2.Panel1.Controls.Add(button1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            splitContainer2.Panel2.Controls.Add(button2);
-            splitContainer2.Size = new Size(253, 59);
-            splitContainer2.SplitterDistance = 178;
-            splitContainer2.TabIndex = 11;
-            // 
-            // button1
-            // 
-            button1.Cursor = Cursors.Hand;
-            button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(0, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(178, 59);
-            button1.TabIndex = 0;
-            button1.Text = "Transferir Arquivos";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.BackgroundImage = TFUtil.Properties.Resources.bradesco;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
-            button2.Cursor = Cursors.Hand;
-            button2.Dock = DockStyle.Fill;
-            button2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(71, 59);
-            button2.TabIndex = 0;
-            button2.Text = "TF";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // panel3
             // 
             panel3.Controls.Add(checkBox2);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(checkBox1);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(5, 173);
+            panel3.Location = new Point(5, 174);
             panel3.Name = "panel3";
-            panel3.Size = new Size(253, 295);
+            panel3.Size = new Size(253, 134);
             panel3.TabIndex = 12;
             // 
             // checkBox2
@@ -269,6 +233,111 @@
             checkBox1.Text = "Interpolar saída java";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(5, 475);
+            splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(button1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(button2);
+            splitContainer2.Size = new Size(253, 60);
+            splitContainer2.SplitterDistance = 178;
+            splitContainer2.TabIndex = 11;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.Dock = DockStyle.Fill;
+            button1.Location = new Point(0, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(178, 60);
+            button1.TabIndex = 0;
+            button1.Text = "Transferir Arquivos";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.BackgroundImage = TFUtil.Properties.Resources.bradesco;
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            button2.Cursor = Cursors.Hand;
+            button2.Dock = DockStyle.Fill;
+            button2.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(0, 0);
+            button2.Name = "button2";
+            button2.Size = new Size(71, 60);
+            button2.TabIndex = 0;
+            button2.Text = "TF";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(button6);
+            panel4.Controls.Add(button5);
+            panel4.Controls.Add(button4);
+            panel4.Controls.Add(button3);
+            panel4.Controls.Add(label3);
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(5, 316);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(253, 151);
+            panel4.TabIndex = 13;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(129, 89);
+            button6.Name = "button6";
+            button6.Size = new Size(106, 34);
+            button6.TabIndex = 20;
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(129, 49);
+            button5.Name = "button5";
+            button5.Size = new Size(106, 34);
+            button5.TabIndex = 19;
+            button5.Text = "workspace";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(17, 49);
+            button4.Name = "button4";
+            button4.Size = new Size(106, 34);
+            button4.TabIndex = 18;
+            button4.Text = "localwkst";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(17, 89);
+            button3.Name = "button3";
+            button3.Size = new Size(106, 34);
+            button3.TabIndex = 17;
+            button3.Text = "log";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(4, 5);
+            label3.Name = "label3";
+            label3.Size = new Size(72, 25);
+            label3.TabIndex = 16;
+            label3.Text = "Atalhos";
+            // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(24, 24);
@@ -292,33 +361,33 @@
             // novoToolStripMenuItem
             // 
             novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            novoToolStripMenuItem.Size = new Size(270, 34);
+            novoToolStripMenuItem.Size = new Size(227, 34);
             novoToolStripMenuItem.Text = "Novo";
             novoToolStripMenuItem.Click += novoToolStripMenuItem_Click;
             // 
             // abrirToolStripMenuItem
             // 
             abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            abrirToolStripMenuItem.Size = new Size(270, 34);
+            abrirToolStripMenuItem.Size = new Size(227, 34);
             abrirToolStripMenuItem.Text = "Abrir";
             abrirToolStripMenuItem.Click += abrirToolStripMenuItem_Click;
             // 
             // salvarComoToolStripMenuItem
             // 
             salvarComoToolStripMenuItem.Name = "salvarComoToolStripMenuItem";
-            salvarComoToolStripMenuItem.Size = new Size(270, 34);
+            salvarComoToolStripMenuItem.Size = new Size(227, 34);
             salvarComoToolStripMenuItem.Text = "Salvar Como...";
             salvarComoToolStripMenuItem.Click += salvarComoToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(267, 6);
+            toolStripSeparator2.Size = new Size(224, 6);
             // 
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(270, 34);
+            sairToolStripMenuItem.Size = new Size(227, 34);
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
@@ -388,7 +457,7 @@
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "TF Util (Alpha V1.1)";
+            Text = "TF Util (Alpha V1.2)";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);
@@ -398,12 +467,14 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -445,5 +516,11 @@
         private ToolStripMenuItem preferênciasToolStripMenuItem;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
+        private Panel panel4;
+        private Button button6;
+        private Button button5;
+        private Button button4;
+        private Button button3;
+        private Label label3;
     }
 }

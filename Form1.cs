@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static System.Windows.Forms.Design.AxImporter;
@@ -94,7 +95,7 @@ namespace TFCopyUtil
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string filePath = @"C:\CLIENT\client.js";
+            string filePath = @$"{defaultClientPath}client.js";
             string arguments = @"-a INTE -p TerminalFinanceiro -x -d";
 
             ProcessStartInfo processInfo = new ProcessStartInfo
@@ -193,6 +194,72 @@ namespace TFCopyUtil
                 {
                     writer.Write(richTextBox1.Text);
                 }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string path = @$"{defaultClientPath}localwkst";
+
+            ProcessStartInfo processInfo = new ProcessStartInfo
+            {
+                WorkingDirectory = defaultClientPath,
+                FileName = "explorer",
+                Arguments = path,
+                CreateNoWindow = true
+            };
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = processInfo;
+                Cursor.Current = Cursors.WaitCursor;
+                process.Start();
+                process.WaitForExit();
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string path = @$"C:\workspaceFDDB";
+
+            ProcessStartInfo processInfo = new ProcessStartInfo
+            {
+                WorkingDirectory = defaultClientPath,
+                FileName = "explorer",
+                Arguments = path,
+                CreateNoWindow = true
+            };
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = processInfo;
+                Cursor.Current = Cursors.WaitCursor;
+                process.Start();
+                process.WaitForExit();
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string filePath = @$"{defaultClientPath}INTE\TerminalFinanceiro\log\bradesco.log";
+
+            ProcessStartInfo processInfo = new ProcessStartInfo
+            {
+                WorkingDirectory = defaultClientPath,
+                FileName = "notepad",
+                Arguments = filePath,
+                CreateNoWindow = true
+            };
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = processInfo;
+                Cursor.Current = Cursors.WaitCursor;
+                process.Start();
+                process.WaitForExit();
+                Cursor.Current = Cursors.Default;
             }
         }
     }
