@@ -83,6 +83,19 @@ namespace TFCopyUtil
             }
         }
 
+        private void richTextBox1_DragDrop(object? sender, DragEventArgs e)
+        {
+            object files = e.Data.GetData("FileDrop");
+            if (files != null)
+            {
+                var list = files as string[];
+                foreach (string fileName in list)
+                {
+                    richTextBox1.AppendText("\n" + fileName);
+                }
+            }
+        }
+
         #region Menu Superior
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,9 +139,7 @@ namespace TFCopyUtil
 
             saveFileDialog.Filter = "Text Files|*.txt";
             saveFileDialog.Title = "Save Text File";
-            saveFileDialog.ShowDialog();
-
-            if (saveFileDialog.FileName != "")
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
                 {
@@ -151,19 +162,6 @@ namespace TFCopyUtil
 
         #endregion
 
-        private void richTextBox1_DragDrop(object? sender, DragEventArgs e)
-        {
-            object files = e.Data.GetData("FileDrop");
-            if (files != null)
-            {
-                var list = files as string[];
-                foreach (string fileName in list)
-                {
-                    richTextBox1.AppendText("\n" + fileName);
-                }
-            }
-        }
-
         #region Radios Check
         private void localwkstRadio_CheckedChanged(object sender, EventArgs e)
         {
@@ -179,8 +177,10 @@ namespace TFCopyUtil
             if (exportLocalwkstRadio.Checked)
             {
                 interpolarChk.Checked = true;
-                folderBrowserDialog1.ShowDialog();
-                destinationRootFolder = folderBrowserDialog1.SelectedPath + "\\localwkst";
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    destinationRootFolder = folderBrowserDialog1.SelectedPath + "\\localwkst";
+                }
             }
         }
 
@@ -189,8 +189,37 @@ namespace TFCopyUtil
             if (exportWorkspaceRadio.Checked)
             {
                 interpolarChk.Checked = false;
-                folderBrowserDialog1.ShowDialog();
-                destinationRootFolder = folderBrowserDialog1.SelectedPath;
+                if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    destinationRootFolder = folderBrowserDialog1.SelectedPath;
+                }
+            }
+        }
+
+        private void importBooksRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (importBooksRadio.Checked)
+            {
+                interpolarChk.Checked = false;
+                interpolarChk.Enabled = false;
+
+                destinationRootFolder = defaultWorkspacePath + "\\ARQ_PCCF\\resourcedata\\cobolcopys";
+
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string[] files = openFileDialog1.FileNames;
+
+                    foreach (string fileName in files)
+                    {
+                        richTextBox1.AppendText("\n" + fileName);
+                    }
+
+                    MessageBox.Show("Adicione o nome do fluxo antes do caminho da book, separando com um espaço. \nEx.:\n\nCTACIBA4 C:\\Users\\userName\\Desktop\\...");
+                }
+            }
+            else
+            {
+                interpolarChk.Enabled = true;
             }
         }
         #endregion
@@ -306,18 +335,83 @@ namespace TFCopyUtil
 
                 if (localwkstRadio.Checked)
                 {
-                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
-                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    try
+                    {
+                        relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
+                        destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro.");
+                        return;
+                    }
                 }
+
                 if (exportLocalwkstRadio.Checked)
                 {
-                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
-                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    try
+                    {
+                        relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("com"));
+                        destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro.");
+                        return;
+                    }
                 }
+
                 if (exportWorkspaceRadio.Checked)
                 {
-                    relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("workspaceFDDB"));
-                    destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    try
+                    {
+                        relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("workspaceFDDB"));
+                        destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro.");
+                        return;
+                    }
+                }
+
+                if (importBooksRadio.Checked)
+                {
+                    try
+                    {
+                        string nomeFluxo = line.Split(" ")[0];
+                        sourceFilePath = line.Split(" ")[1];
+                        string filename = Path.GetFileNameWithoutExtension(sourceFilePath);
+                        destinationFilePath = Path.Combine(destinationRootFolder, Path.Combine(nomeFluxo, filename + ".CPY"));
+
+                        try
+                        {
+                            string destinationFwkFile = defaultWorkspacePath + "\\ARQ_PCCF\\JavaSource\\resourcedata\\fwk\\" + nomeFluxo + ".fwk";
+
+                            using (StreamWriter writer = new StreamWriter(destinationFwkFile))
+                            {
+                                writer.Write($"root={nomeFluxo}\r\ninput=resourcedata/cobolcopys/{nomeFluxo}/{filename.Substring(0, filename.Length - 1) + "E"}.CPY\r\noutput=resourcedata/cobolcopys/{nomeFluxo}/{filename.Substring(0, filename.Length - 1) + "S"}.CPY");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                            isSuccess = false;
+                        }
+
+
+                    }
+                    catch (IndexOutOfRangeException ex)
+                    {
+                        MessageBox.Show("Adicione o nome do fluxo antes do caminho da book, separando com um espaço. \n\nEx.:\nCTACIBA4 C:\\Users\\userName\\Desktop\\...");
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ocorreu um erro: " + ex.Message);
+                        return;
+                    }
+
                 }
 
                 try

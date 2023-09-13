@@ -57,8 +57,7 @@ namespace TFUtil
 
         private void button1_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            if (folderBrowserDialog1.SelectedPath != null)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = folderBrowserDialog1.SelectedPath;
             }
@@ -66,8 +65,7 @@ namespace TFUtil
 
         private void button2_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            if (folderBrowserDialog1.SelectedPath != null)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox2.Text = folderBrowserDialog1.SelectedPath;
             }
@@ -75,8 +73,7 @@ namespace TFUtil
 
         private void button3_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            if (openFileDialog1.CheckFileExists)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK && openFileDialog1.CheckFileExists)
             {
                 textBox3.Text = openFileDialog1.FileName;
             }

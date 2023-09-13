@@ -33,6 +33,7 @@
             richTextBox1 = new RichTextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
+            importBooksRadio = new RadioButton();
             exportWorkspaceRadio = new RadioButton();
             localwkstRadio = new RadioButton();
             exportLocalwkstRadio = new RadioButton();
@@ -99,8 +100,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
-            splitContainer1.Size = new Size(987, 544);
-            splitContainer1.SplitterDistance = 716;
+            splitContainer1.Size = new Size(1027, 576);
+            splitContainer1.SplitterDistance = 744;
             splitContainer1.TabIndex = 0;
             // 
             // richTextBox1
@@ -110,7 +111,7 @@
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(712, 540);
+            richTextBox1.Size = new Size(740, 572);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
@@ -124,7 +125,7 @@
             tableLayoutPanel1.Controls.Add(panel3, 0, 1);
             tableLayoutPanel1.Controls.Add(splitContainer2, 0, 3);
             tableLayoutPanel1.Controls.Add(panel4, 0, 2);
-            tableLayoutPanel1.Dock = DockStyle.Right;
+            tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 4;
@@ -132,11 +133,12 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 140F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 157F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
-            tableLayoutPanel1.Size = new Size(263, 540);
+            tableLayoutPanel1.Size = new Size(275, 572);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // panel1
             // 
+            panel1.Controls.Add(importBooksRadio);
             panel1.Controls.Add(exportWorkspaceRadio);
             panel1.Controls.Add(localwkstRadio);
             panel1.Controls.Add(exportLocalwkstRadio);
@@ -144,17 +146,28 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(5, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(253, 161);
+            panel1.Size = new Size(265, 193);
             panel1.TabIndex = 10;
+            // 
+            // importBooksRadio
+            // 
+            importBooksRadio.AutoSize = true;
+            importBooksRadio.Location = new Point(10, 146);
+            importBooksRadio.Name = "importBooksRadio";
+            importBooksRadio.Size = new Size(262, 29);
+            importBooksRadio.TabIndex = 12;
+            importBooksRadio.Text = "Importar books (ARQ_PCCF)";
+            importBooksRadio.UseVisualStyleBackColor = true;
+            importBooksRadio.CheckedChanged += importBooksRadio_CheckedChanged;
             // 
             // exportWorkspaceRadio
             // 
             exportWorkspaceRadio.AutoSize = true;
             exportWorkspaceRadio.Location = new Point(10, 111);
             exportWorkspaceRadio.Name = "exportWorkspaceRadio";
-            exportWorkspaceRadio.Size = new Size(240, 29);
+            exportWorkspaceRadio.Size = new Size(192, 29);
             exportWorkspaceRadio.TabIndex = 11;
-            exportWorkspaceRadio.Text = "Exportar WorkspaceFDDB";
+            exportWorkspaceRadio.Text = "Exportar workspace";
             exportWorkspaceRadio.UseVisualStyleBackColor = true;
             exportWorkspaceRadio.CheckedChanged += exportWorkspaceRadio_CheckedChanged;
             // 
@@ -197,9 +210,9 @@
             panel3.Controls.Add(label2);
             panel3.Controls.Add(interpolarChk);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(5, 174);
+            panel3.Location = new Point(5, 206);
             panel3.Name = "panel3";
-            panel3.Size = new Size(253, 134);
+            panel3.Size = new Size(265, 134);
             panel3.TabIndex = 12;
             // 
             // guardarCaminhosChk
@@ -238,7 +251,7 @@
             // splitContainer2
             // 
             splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(5, 475);
+            splitContainer2.Location = new Point(5, 507);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -248,8 +261,8 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tfBtn);
-            splitContainer2.Size = new Size(253, 60);
-            splitContainer2.SplitterDistance = 178;
+            splitContainer2.Size = new Size(265, 60);
+            splitContainer2.SplitterDistance = 186;
             splitContainer2.TabIndex = 11;
             // 
             // transferirBtn
@@ -258,7 +271,7 @@
             transferirBtn.Dock = DockStyle.Fill;
             transferirBtn.Location = new Point(0, 0);
             transferirBtn.Name = "transferirBtn";
-            transferirBtn.Size = new Size(178, 60);
+            transferirBtn.Size = new Size(186, 60);
             transferirBtn.TabIndex = 0;
             transferirBtn.Text = "Transferir Arquivos";
             transferirBtn.UseVisualStyleBackColor = true;
@@ -274,7 +287,7 @@
             tfBtn.ForeColor = Color.White;
             tfBtn.Location = new Point(0, 0);
             tfBtn.Name = "tfBtn";
-            tfBtn.Size = new Size(71, 60);
+            tfBtn.Size = new Size(75, 60);
             tfBtn.TabIndex = 0;
             tfBtn.Text = "TF";
             tfBtn.UseVisualStyleBackColor = true;
@@ -288,14 +301,14 @@
             panel4.Controls.Add(logBtn);
             panel4.Controls.Add(label3);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(5, 316);
+            panel4.Location = new Point(5, 348);
             panel4.Name = "panel4";
-            panel4.Size = new Size(253, 151);
+            panel4.Size = new Size(265, 151);
             panel4.TabIndex = 13;
             // 
             // killtfBtn
             // 
-            killtfBtn.Location = new Point(129, 89);
+            killtfBtn.Location = new Point(134, 88);
             killtfBtn.Name = "killtfBtn";
             killtfBtn.Size = new Size(106, 34);
             killtfBtn.TabIndex = 20;
@@ -305,7 +318,7 @@
             // 
             // workspaceBtn
             // 
-            workspaceBtn.Location = new Point(129, 49);
+            workspaceBtn.Location = new Point(134, 48);
             workspaceBtn.Name = "workspaceBtn";
             workspaceBtn.Size = new Size(106, 34);
             workspaceBtn.TabIndex = 19;
@@ -315,7 +328,7 @@
             // 
             // localwkstBtn
             // 
-            localwkstBtn.Location = new Point(17, 49);
+            localwkstBtn.Location = new Point(22, 48);
             localwkstBtn.Name = "localwkstBtn";
             localwkstBtn.Size = new Size(106, 34);
             localwkstBtn.TabIndex = 18;
@@ -325,7 +338,7 @@
             // 
             // logBtn
             // 
-            logBtn.Location = new Point(17, 89);
+            logBtn.Location = new Point(22, 88);
             logBtn.Name = "logBtn";
             logBtn.Size = new Size(106, 34);
             logBtn.TabIndex = 17;
@@ -348,7 +361,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, toolStripDropDownButton2, toolStripDropDownButton3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(987, 34);
+            toolStrip1.Size = new Size(1027, 34);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -447,12 +460,13 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 34);
             panel2.Name = "panel2";
-            panel2.Size = new Size(987, 544);
+            panel2.Size = new Size(1027, 576);
             panel2.TabIndex = 2;
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.Multiselect = true;
             // 
             // helpProvider1
             // 
@@ -462,7 +476,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(987, 578);
+            ClientSize = new Size(1027, 610);
             Controls.Add(panel2);
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -539,5 +553,6 @@
         private Button logBtn;
         private Label label3;
         private HelpProvider helpProvider1;
+        private RadioButton importBooksRadio;
     }
 }
