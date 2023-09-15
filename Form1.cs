@@ -284,7 +284,6 @@ namespace TFCopyUtil
                 process.StartInfo = processInfo;
                 Cursor.Current = Cursors.WaitCursor;
                 process.Start();
-                process.WaitForExit();
                 Cursor.Current = Cursors.Default;
             }
         }

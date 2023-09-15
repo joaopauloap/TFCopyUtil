@@ -32,25 +32,23 @@
             splitContainer1 = new SplitContainer();
             richTextBox1 = new RichTextBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            panel1 = new Panel();
+            groupBox1 = new GroupBox();
             importBooksRadio = new RadioButton();
-            exportWorkspaceRadio = new RadioButton();
             localwkstRadio = new RadioButton();
+            exportWorkspaceRadio = new RadioButton();
             exportLocalwkstRadio = new RadioButton();
-            label1 = new Label();
-            panel3 = new Panel();
+            groupBox2 = new GroupBox();
             guardarCaminhosChk = new CheckBox();
-            label2 = new Label();
             interpolarChk = new CheckBox();
+            groupBox3 = new GroupBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            killtfBtn = new Button();
+            localwkstBtn = new Button();
+            logBtn = new Button();
+            workspaceBtn = new Button();
             splitContainer2 = new SplitContainer();
             transferirBtn = new Button();
             tfBtn = new Button();
-            panel4 = new Panel();
-            killtfBtn = new Button();
-            workspaceBtn = new Button();
-            localwkstBtn = new Button();
-            logBtn = new Button();
-            label3 = new Label();
             folderBrowserDialog1 = new FolderBrowserDialog();
             toolStrip1 = new ToolStrip();
             toolStripDropDownButton1 = new ToolStripDropDownButton();
@@ -74,13 +72,14 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
-            panel4.SuspendLayout();
             toolStrip1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -101,7 +100,7 @@
             // 
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
             splitContainer1.Size = new Size(1027, 576);
-            splitContainer1.SplitterDistance = 744;
+            splitContainer1.SplitterDistance = 708;
             splitContainer1.TabIndex = 0;
             // 
             // richTextBox1
@@ -111,7 +110,7 @@
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(740, 572);
+            richTextBox1.Size = new Size(704, 572);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
@@ -121,38 +120,40 @@
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(panel1, 0, 0);
-            tableLayoutPanel1.Controls.Add(panel3, 0, 1);
-            tableLayoutPanel1.Controls.Add(splitContainer2, 0, 3);
-            tableLayoutPanel1.Controls.Add(panel4, 0, 2);
+            tableLayoutPanel1.Controls.Add(groupBox1, 0, 0);
+            tableLayoutPanel1.Controls.Add(groupBox2, 0, 1);
+            tableLayoutPanel1.Controls.Add(groupBox3, 0, 2);
+            tableLayoutPanel1.Controls.Add(splitContainer2, 0, 4);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 140F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 112F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 157F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
-            tableLayoutPanel1.Size = new Size(275, 572);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 73F));
+            tableLayoutPanel1.Size = new Size(311, 572);
             tableLayoutPanel1.TabIndex = 1;
             // 
-            // panel1
+            // groupBox1
             // 
-            panel1.Controls.Add(importBooksRadio);
-            panel1.Controls.Add(exportWorkspaceRadio);
-            panel1.Controls.Add(localwkstRadio);
-            panel1.Controls.Add(exportLocalwkstRadio);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(5, 5);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(265, 193);
-            panel1.TabIndex = 10;
+            groupBox1.Controls.Add(importBooksRadio);
+            groupBox1.Controls.Add(localwkstRadio);
+            groupBox1.Controls.Add(exportWorkspaceRadio);
+            groupBox1.Controls.Add(exportLocalwkstRadio);
+            groupBox1.Dock = DockStyle.Fill;
+            groupBox1.Location = new Point(5, 5);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(301, 185);
+            groupBox1.TabIndex = 13;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Destino";
             // 
             // importBooksRadio
             // 
             importBooksRadio.AutoSize = true;
-            importBooksRadio.Location = new Point(10, 146);
+            importBooksRadio.Location = new Point(14, 135);
             importBooksRadio.Name = "importBooksRadio";
             importBooksRadio.Size = new Size(262, 29);
             importBooksRadio.TabIndex = 12;
@@ -160,22 +161,11 @@
             importBooksRadio.UseVisualStyleBackColor = true;
             importBooksRadio.CheckedChanged += importBooksRadio_CheckedChanged;
             // 
-            // exportWorkspaceRadio
-            // 
-            exportWorkspaceRadio.AutoSize = true;
-            exportWorkspaceRadio.Location = new Point(10, 111);
-            exportWorkspaceRadio.Name = "exportWorkspaceRadio";
-            exportWorkspaceRadio.Size = new Size(192, 29);
-            exportWorkspaceRadio.TabIndex = 11;
-            exportWorkspaceRadio.Text = "Exportar workspace";
-            exportWorkspaceRadio.UseVisualStyleBackColor = true;
-            exportWorkspaceRadio.CheckedChanged += exportWorkspaceRadio_CheckedChanged;
-            // 
             // localwkstRadio
             // 
             localwkstRadio.AutoSize = true;
             localwkstRadio.Checked = true;
-            localwkstRadio.Location = new Point(10, 41);
+            localwkstRadio.Location = new Point(14, 30);
             localwkstRadio.Name = "localwkstRadio";
             localwkstRadio.Size = new Size(245, 29);
             localwkstRadio.TabIndex = 10;
@@ -184,10 +174,21 @@
             localwkstRadio.UseVisualStyleBackColor = true;
             localwkstRadio.CheckedChanged += localwkstRadio_CheckedChanged;
             // 
+            // exportWorkspaceRadio
+            // 
+            exportWorkspaceRadio.AutoSize = true;
+            exportWorkspaceRadio.Location = new Point(14, 100);
+            exportWorkspaceRadio.Name = "exportWorkspaceRadio";
+            exportWorkspaceRadio.Size = new Size(192, 29);
+            exportWorkspaceRadio.TabIndex = 11;
+            exportWorkspaceRadio.Text = "Exportar workspace";
+            exportWorkspaceRadio.UseVisualStyleBackColor = true;
+            exportWorkspaceRadio.CheckedChanged += exportWorkspaceRadio_CheckedChanged;
+            // 
             // exportLocalwkstRadio
             // 
             exportLocalwkstRadio.AutoSize = true;
-            exportLocalwkstRadio.Location = new Point(10, 76);
+            exportLocalwkstRadio.Location = new Point(14, 65);
             exportLocalwkstRadio.Name = "exportLocalwkstRadio";
             exportLocalwkstRadio.Size = new Size(180, 29);
             exportLocalwkstRadio.TabIndex = 8;
@@ -195,63 +196,128 @@
             exportLocalwkstRadio.UseVisualStyleBackColor = true;
             exportLocalwkstRadio.CheckedChanged += exportLocalwkstRadio_CheckedChanged;
             // 
-            // label1
+            // groupBox2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 3);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 25);
-            label1.TabIndex = 9;
-            label1.Text = "Destino";
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(guardarCaminhosChk);
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(interpolarChk);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(5, 206);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(265, 134);
-            panel3.TabIndex = 12;
+            groupBox2.Controls.Add(guardarCaminhosChk);
+            groupBox2.Controls.Add(interpolarChk);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Location = new Point(5, 198);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(301, 106);
+            groupBox2.TabIndex = 0;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Opções";
             // 
             // guardarCaminhosChk
             // 
             guardarCaminhosChk.AutoSize = true;
             guardarCaminhosChk.Checked = true;
             guardarCaminhosChk.CheckState = CheckState.Checked;
-            guardarCaminhosChk.Location = new Point(10, 80);
+            guardarCaminhosChk.Location = new Point(14, 65);
             guardarCaminhosChk.Name = "guardarCaminhosChk";
             guardarCaminhosChk.Size = new Size(182, 29);
             guardarCaminhosChk.TabIndex = 15;
             guardarCaminhosChk.Text = "Guardar caminhos";
             guardarCaminhosChk.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 6);
-            label2.Name = "label2";
-            label2.Size = new Size(73, 25);
-            label2.TabIndex = 13;
-            label2.Text = "Opções";
-            // 
             // interpolarChk
             // 
             interpolarChk.AutoSize = true;
             interpolarChk.Checked = true;
             interpolarChk.CheckState = CheckState.Checked;
-            interpolarChk.Location = new Point(10, 45);
+            interpolarChk.Location = new Point(14, 30);
             interpolarChk.Name = "interpolarChk";
             interpolarChk.Size = new Size(197, 29);
             interpolarChk.TabIndex = 14;
             interpolarChk.Text = "Interpolar saída java";
             interpolarChk.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(tableLayoutPanel2);
+            groupBox3.Dock = DockStyle.Fill;
+            groupBox3.Location = new Point(5, 312);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(301, 151);
+            groupBox3.TabIndex = 0;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Atalhos";
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 5;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.333332F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.333332F));
+            tableLayoutPanel2.Controls.Add(killtfBtn, 3, 2);
+            tableLayoutPanel2.Controls.Add(localwkstBtn, 1, 0);
+            tableLayoutPanel2.Controls.Add(logBtn, 1, 2);
+            tableLayoutPanel2.Controls.Add(workspaceBtn, 3, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 27);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(295, 121);
+            tableLayoutPanel2.TabIndex = 0;
+            // 
+            // killtfBtn
+            // 
+            killtfBtn.Cursor = Cursors.Hand;
+            killtfBtn.Dock = DockStyle.Fill;
+            killtfBtn.Location = new Point(154, 67);
+            killtfBtn.Name = "killtfBtn";
+            killtfBtn.Size = new Size(112, 51);
+            killtfBtn.TabIndex = 20;
+            killtfBtn.Text = "kill TF";
+            killtfBtn.UseVisualStyleBackColor = true;
+            killtfBtn.Click += killtfBtn_Click;
+            // 
+            // localwkstBtn
+            // 
+            localwkstBtn.Cursor = Cursors.Hand;
+            localwkstBtn.Dock = DockStyle.Fill;
+            localwkstBtn.Location = new Point(26, 3);
+            localwkstBtn.Name = "localwkstBtn";
+            localwkstBtn.Size = new Size(112, 50);
+            localwkstBtn.TabIndex = 18;
+            localwkstBtn.Text = "localwkst";
+            localwkstBtn.UseVisualStyleBackColor = true;
+            localwkstBtn.Click += localwkstBtn_Click;
+            // 
+            // logBtn
+            // 
+            logBtn.Cursor = Cursors.Hand;
+            logBtn.Dock = DockStyle.Fill;
+            logBtn.Location = new Point(26, 67);
+            logBtn.Name = "logBtn";
+            logBtn.Size = new Size(112, 51);
+            logBtn.TabIndex = 17;
+            logBtn.Text = "log";
+            logBtn.UseVisualStyleBackColor = true;
+            logBtn.Click += logBtn_Click;
+            // 
+            // workspaceBtn
+            // 
+            workspaceBtn.Cursor = Cursors.Hand;
+            workspaceBtn.Dock = DockStyle.Fill;
+            workspaceBtn.Location = new Point(154, 3);
+            workspaceBtn.Name = "workspaceBtn";
+            workspaceBtn.Size = new Size(112, 50);
+            workspaceBtn.TabIndex = 19;
+            workspaceBtn.Text = "workspace";
+            workspaceBtn.UseVisualStyleBackColor = true;
+            workspaceBtn.Click += workspaceBtn_Click;
+            // 
             // splitContainer2
             // 
             splitContainer2.Dock = DockStyle.Fill;
-            splitContainer2.Location = new Point(5, 507);
+            splitContainer2.FixedPanel = FixedPanel.Panel2;
+            splitContainer2.Location = new Point(5, 500);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -261,8 +327,9 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tfBtn);
-            splitContainer2.Size = new Size(265, 60);
-            splitContainer2.SplitterDistance = 186;
+            splitContainer2.Panel2MinSize = 60;
+            splitContainer2.Size = new Size(301, 67);
+            splitContainer2.SplitterDistance = 211;
             splitContainer2.TabIndex = 11;
             // 
             // transferirBtn
@@ -271,7 +338,7 @@
             transferirBtn.Dock = DockStyle.Fill;
             transferirBtn.Location = new Point(0, 0);
             transferirBtn.Name = "transferirBtn";
-            transferirBtn.Size = new Size(186, 60);
+            transferirBtn.Size = new Size(211, 67);
             transferirBtn.TabIndex = 0;
             transferirBtn.Text = "Transferir Arquivos";
             transferirBtn.UseVisualStyleBackColor = true;
@@ -282,78 +349,16 @@
             tfBtn.BackgroundImage = TFUtil.Properties.Resources.bradesco;
             tfBtn.BackgroundImageLayout = ImageLayout.Stretch;
             tfBtn.Cursor = Cursors.Hand;
-            tfBtn.Dock = DockStyle.Fill;
+            tfBtn.Dock = DockStyle.Right;
             tfBtn.Font = new Font("Segoe UI", 8F, FontStyle.Bold, GraphicsUnit.Point);
             tfBtn.ForeColor = Color.White;
             tfBtn.Location = new Point(0, 0);
             tfBtn.Name = "tfBtn";
-            tfBtn.Size = new Size(75, 60);
+            tfBtn.Size = new Size(86, 67);
             tfBtn.TabIndex = 0;
             tfBtn.Text = "TF";
             tfBtn.UseVisualStyleBackColor = true;
             tfBtn.Click += tfBtn_Click;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(killtfBtn);
-            panel4.Controls.Add(workspaceBtn);
-            panel4.Controls.Add(localwkstBtn);
-            panel4.Controls.Add(logBtn);
-            panel4.Controls.Add(label3);
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(5, 348);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(265, 151);
-            panel4.TabIndex = 13;
-            // 
-            // killtfBtn
-            // 
-            killtfBtn.Location = new Point(134, 88);
-            killtfBtn.Name = "killtfBtn";
-            killtfBtn.Size = new Size(106, 34);
-            killtfBtn.TabIndex = 20;
-            killtfBtn.Text = "kill TF";
-            killtfBtn.UseVisualStyleBackColor = true;
-            killtfBtn.Click += killtfBtn_Click;
-            // 
-            // workspaceBtn
-            // 
-            workspaceBtn.Location = new Point(134, 48);
-            workspaceBtn.Name = "workspaceBtn";
-            workspaceBtn.Size = new Size(106, 34);
-            workspaceBtn.TabIndex = 19;
-            workspaceBtn.Text = "workspace";
-            workspaceBtn.UseVisualStyleBackColor = true;
-            workspaceBtn.Click += workspaceBtn_Click;
-            // 
-            // localwkstBtn
-            // 
-            localwkstBtn.Location = new Point(22, 48);
-            localwkstBtn.Name = "localwkstBtn";
-            localwkstBtn.Size = new Size(106, 34);
-            localwkstBtn.TabIndex = 18;
-            localwkstBtn.Text = "localwkst";
-            localwkstBtn.UseVisualStyleBackColor = true;
-            localwkstBtn.Click += localwkstBtn_Click;
-            // 
-            // logBtn
-            // 
-            logBtn.Location = new Point(22, 88);
-            logBtn.Name = "logBtn";
-            logBtn.Size = new Size(106, 34);
-            logBtn.TabIndex = 17;
-            logBtn.Text = "log";
-            logBtn.UseVisualStyleBackColor = true;
-            logBtn.Click += logBtn_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(4, 5);
-            label3.Name = "label3";
-            label3.Size = new Size(72, 25);
-            label3.TabIndex = 16;
-            label3.Text = "Atalhos";
             // 
             // toolStrip1
             // 
@@ -490,16 +495,16 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -517,13 +522,10 @@
         private SplitContainer splitContainer1;
         private RichTextBox richTextBox1;
         private FolderBrowserDialog folderBrowserDialog1;
-        private Label label1;
         private RadioButton exportLocalwkstRadio;
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
         private RadioButton localwkstRadio;
         private Button transferirBtn;
-        private Label label2;
         private CheckBox interpolarChk;
         private ToolStrip toolStrip1;
         private ToolStripDropDownButton toolStripDropDownButton1;
@@ -537,7 +539,6 @@
         private ToolStripMenuItem sobreToolStripMenuItem;
         private Panel panel2;
         private SplitContainer splitContainer2;
-        private Panel panel3;
         private CheckBox guardarCaminhosChk;
         private Button tfBtn;
         private RadioButton exportWorkspaceRadio;
@@ -546,13 +547,15 @@
         private ToolStripMenuItem preferênciasToolStripMenuItem;
         private OpenFileDialog openFileDialog1;
         private SaveFileDialog saveFileDialog1;
-        private Panel panel4;
         private Button killtfBtn;
         private Button workspaceBtn;
         private Button localwkstBtn;
         private Button logBtn;
-        private Label label3;
         private HelpProvider helpProvider1;
         private RadioButton importBooksRadio;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private TableLayoutPanel tableLayoutPanel2;
     }
 }
