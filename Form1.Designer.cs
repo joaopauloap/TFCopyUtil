@@ -475,7 +475,7 @@
             // 
             // helpProvider1
             // 
-            helpProvider1.HelpNamespace = "manual.html";
+            helpProvider1.HelpNamespace = "assets\\manual.html";
             // 
             // Form1
             // 
@@ -487,7 +487,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             helpProvider1.SetShowHelp(this, true);
-            Text = "TF Util (Beta V1.3)";
+            Text = "TF Util (Beta V1.4)";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);
