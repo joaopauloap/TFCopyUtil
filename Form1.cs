@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TFUtil;
 using static System.Windows.Forms.Design.AxImporter;
+using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TFCopyUtil
@@ -24,6 +26,31 @@ namespace TFCopyUtil
             richTextBox1.AllowDrop = true;
         }
 
+        private void colorLine(int lineNumber, Color newColor)
+        {
+            string line = richTextBox1.Lines[lineNumber];
+            int startIndex = richTextBox1.GetFirstCharIndexFromLine(lineNumber);
+            int length = richTextBox1.Lines[lineNumber].Length;
+
+            richTextBox1.Select(startIndex, length);
+            richTextBox1.SelectionColor = newColor;
+            richTextBox1.SelectionStart = richTextBox1.Text.Length;
+            richTextBox1.ScrollToCaret();
+        }
+
+        private void refreshLines()
+        {
+            int i = 0;
+            foreach (string line in richTextBox1.Lines)
+            {
+                if (line.StartsWith("//"))
+                    colorLine(i, Color.DarkGray);
+                else
+                    colorLine(i, Color.Black);
+                i++;
+            }
+        }
+
         public string loadCfg()
         {
             string cfgFileContent = "";
@@ -42,7 +69,7 @@ namespace TFCopyUtil
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+                MessageBox.Show($"Ocorreu um erro: {ex.Message}");
             }
             finally
             {
@@ -72,6 +99,7 @@ namespace TFCopyUtil
             try
             {
                 richTextBox1.Text = File.ReadAllText("paths.txt");
+                refreshLines();
             }
             catch (FileNotFoundException ex)
             {
@@ -79,7 +107,7 @@ namespace TFCopyUtil
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+                MessageBox.Show($"Ocorreu um erro: {ex.Message}");
             }
         }
 
@@ -128,7 +156,7 @@ namespace TFCopyUtil
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ocorreu um Erro: " + ex.Message);
+                    MessageBox.Show($"Ocorreu um erro: {ex.Message}");
                 }
             }
         }
@@ -162,8 +190,8 @@ namespace TFCopyUtil
 
         #endregion
 
-        #region Radios Check
-        private void localwkstRadio_CheckedChanged(object sender, EventArgs e)
+        #region Radios
+        private void localwkstRadio_Click(object sender, EventArgs e)
         {
             if (localwkstRadio.Checked)
             {
@@ -172,7 +200,7 @@ namespace TFCopyUtil
             }
         }
 
-        private void exportLocalwkstRadio_CheckedChanged(object sender, EventArgs e)
+        private void exportLocalwkstRadio_Click(object sender, EventArgs e)
         {
             if (exportLocalwkstRadio.Checked)
             {
@@ -184,7 +212,7 @@ namespace TFCopyUtil
             }
         }
 
-        private void exportWorkspaceRadio_CheckedChanged(object sender, EventArgs e)
+        private void exportWorkspaceRadio_Click(object sender, EventArgs e)
         {
             if (exportWorkspaceRadio.Checked)
             {
@@ -196,7 +224,7 @@ namespace TFCopyUtil
             }
         }
 
-        private void importBooksRadio_CheckedChanged(object sender, EventArgs e)
+        private void importBooksRadio_Click(object sender, EventArgs e)
         {
             if (importBooksRadio.Checked)
             {
@@ -204,17 +232,17 @@ namespace TFCopyUtil
                 interpolarChk.Enabled = false;
 
                 destinationRootFolder = defaultWorkspacePath + "\\ARQ_PCCF\\resourcedata\\cobolcopys";
-
+                openFileDialog1.FileName = "copybook.txt";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string[] files = openFileDialog1.FileNames;
 
+                    string fluxo = InputBox.Show("Informe o nome do fluxo:", "Nome do fluxo");
+
                     foreach (string fileName in files)
                     {
-                        richTextBox1.AppendText("\n" + fileName);
+                        richTextBox1.AppendText($"\n{fluxo} {fileName}");
                     }
-
-                    MessageBox.Show("Adicione o nome do fluxo antes do caminho da book, separando com um espaço. \nEx.:\n\nCTACIBA4 C:\\Users\\userName\\Desktop\\...");
                 }
             }
             else
@@ -224,7 +252,7 @@ namespace TFCopyUtil
         }
         #endregion
 
-        #region Buttons Click
+        #region Buttons
         private void localwkstBtn_Click(object sender, EventArgs e)
         {
             string path = @$"{defaultClientPath}\localwkst";
@@ -242,7 +270,8 @@ namespace TFCopyUtil
                 process.StartInfo = processInfo;
                 Cursor.Current = Cursors.WaitCursor;
                 process.Start();
-                process.WaitForExit();
+                //process.WaitForExit();
+                Thread.Sleep(500);
                 Cursor.Current = Cursors.Default;
             }
         }
@@ -262,7 +291,8 @@ namespace TFCopyUtil
                 process.StartInfo = processInfo;
                 Cursor.Current = Cursors.WaitCursor;
                 process.Start();
-                process.WaitForExit();
+                //process.WaitForExit();
+                Thread.Sleep(500);
                 Cursor.Current = Cursors.Default;
             }
         }
@@ -284,6 +314,8 @@ namespace TFCopyUtil
                 process.StartInfo = processInfo;
                 Cursor.Current = Cursors.WaitCursor;
                 process.Start();
+                //process.WaitForExit();
+                Thread.Sleep(500);
                 Cursor.Current = Cursors.Default;
             }
         }
@@ -317,13 +349,18 @@ namespace TFCopyUtil
         private void transferirBtn_Click(object sender, EventArgs e)
         {
             bool isSuccess = true;
+            int lineNumber = -1;
+            refreshLines();
 
             foreach (string line in richTextBox1.Lines)
             {
-                if (string.IsNullOrWhiteSpace(line)) continue;
+                lineNumber++;
+
+                if (string.IsNullOrWhiteSpace(line)) continue;  //linha vazia
+                if (line.StartsWith("//")) continue; //comentario
 
                 string sourceFilePath = line;
-                string relativePath;
+                string relativePath = "";
                 string destinationFilePath = "";
 
                 if (interpolarChk.Checked)
@@ -341,7 +378,14 @@ namespace TFCopyUtil
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocorreu um erro.");
+                        if (relativePath == "")
+                        {
+                            MessageBox.Show($"Ocorreu um erro: Não foi encontrada uma estrutura de pastas compativel com a localwkst.");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                        }
                         return;
                     }
                 }
@@ -355,7 +399,7 @@ namespace TFCopyUtil
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocorreu um erro.");
+                        MessageBox.Show($"Ocorreu um erro: {ex.Message}");
                         return;
                     }
                 }
@@ -369,7 +413,7 @@ namespace TFCopyUtil
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocorreu um erro.");
+                        MessageBox.Show($"Ocorreu um erro: {ex.Message}");
                         return;
                     }
                 }
@@ -395,7 +439,6 @@ namespace TFCopyUtil
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Ocorreu um erro: {ex.Message}");
-                            isSuccess = false;
                         }
 
 
@@ -407,7 +450,7 @@ namespace TFCopyUtil
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ocorreu um erro: " + ex.Message);
+                        MessageBox.Show($"Ocorreu um erro: {ex.Message}");
                         return;
                     }
 
@@ -415,12 +458,35 @@ namespace TFCopyUtil
 
                 try
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(destinationFilePath));
-                    File.Copy(sourceFilePath, destinationFilePath, true);
+
+                    string origin = Path.GetDirectoryName(sourceFilePath);
+                    string destinationFolder = Path.GetDirectoryName(destinationFilePath);
+                    string filename = Path.GetFileNameWithoutExtension(sourceFilePath);
+
+                    string[] files = Directory.GetFiles(origin)
+                                                   .Where(f => Path.GetFileName(f).StartsWith(filename))
+                                                   .ToArray();
+
+                    Directory.CreateDirectory(destinationFolder);
+
+                    if (files.Length > 1)
+                    {
+                        foreach (string file in files)
+                        {
+                            destinationFilePath = Path.Combine(destinationFolder, Path.GetFileName(file));
+                            File.Copy(file, destinationFilePath, true);
+                        }
+                    }
+                    else
+                    {
+                        File.Copy(sourceFilePath, destinationFilePath, true);
+                    }
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                    colorLine(lineNumber, Color.Red);
                     isSuccess = false;
                 }
             }
@@ -428,10 +494,12 @@ namespace TFCopyUtil
             if (isSuccess)
             {
                 MessageBox.Show($"Arquivos copiados com sucesso.");
+                richTextBox1.Focus();
             }
             else
             {
                 MessageBox.Show($"Alguns arquivos podem não ter sido copiados.");
+                richTextBox1.Focus();
             }
         }
 
@@ -454,10 +522,12 @@ namespace TFCopyUtil
                 process.StartInfo = processInfo;
                 Cursor.Current = Cursors.WaitCursor;
                 process.Start();
-                process.WaitForExit();
+                //process.WaitForExit();
+                Thread.Sleep(500);
                 Cursor.Current = Cursors.Default;
             }
         }
         #endregion
+
     }
 }

@@ -99,8 +99,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
-            splitContainer1.Size = new Size(1027, 576);
-            splitContainer1.SplitterDistance = 708;
+            splitContainer1.Size = new Size(1237, 576);
+            splitContainer1.SplitterDistance = 918;
             splitContainer1.TabIndex = 0;
             // 
             // richTextBox1
@@ -110,7 +110,7 @@
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(704, 572);
+            richTextBox1.Size = new Size(914, 572);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
@@ -159,7 +159,7 @@
             importBooksRadio.TabIndex = 12;
             importBooksRadio.Text = "Importar books (ARQ_PCCF)";
             importBooksRadio.UseVisualStyleBackColor = true;
-            importBooksRadio.CheckedChanged += importBooksRadio_CheckedChanged;
+            importBooksRadio.Click += importBooksRadio_Click;
             // 
             // localwkstRadio
             // 
@@ -172,7 +172,7 @@
             localwkstRadio.TabStop = true;
             localwkstRadio.Text = "Bradesco Client (localwkst)";
             localwkstRadio.UseVisualStyleBackColor = true;
-            localwkstRadio.CheckedChanged += localwkstRadio_CheckedChanged;
+            localwkstRadio.Click += localwkstRadio_Click;
             // 
             // exportWorkspaceRadio
             // 
@@ -183,7 +183,7 @@
             exportWorkspaceRadio.TabIndex = 11;
             exportWorkspaceRadio.Text = "Exportar workspace";
             exportWorkspaceRadio.UseVisualStyleBackColor = true;
-            exportWorkspaceRadio.CheckedChanged += exportWorkspaceRadio_CheckedChanged;
+            exportWorkspaceRadio.Click += exportWorkspaceRadio_Click;
             // 
             // exportLocalwkstRadio
             // 
@@ -194,7 +194,7 @@
             exportLocalwkstRadio.TabIndex = 8;
             exportLocalwkstRadio.Text = "Exportar localwkst";
             exportLocalwkstRadio.UseVisualStyleBackColor = true;
-            exportLocalwkstRadio.CheckedChanged += exportLocalwkstRadio_CheckedChanged;
+            exportLocalwkstRadio.Click += exportLocalwkstRadio_Click;
             // 
             // groupBox2
             // 
@@ -366,7 +366,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, toolStripDropDownButton2, toolStripDropDownButton3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1027, 34);
+            toolStrip1.Size = new Size(1237, 34);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -465,7 +465,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 34);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1027, 576);
+            panel2.Size = new Size(1237, 576);
             panel2.TabIndex = 2;
             // 
             // openFileDialog1
@@ -481,13 +481,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1027, 610);
+            ClientSize = new Size(1237, 610);
             Controls.Add(panel2);
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             helpProvider1.SetShowHelp(this, true);
-            Text = "TF Util (Beta V1.4)";
+            Text = "TF Util (Beta V1.5)";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);

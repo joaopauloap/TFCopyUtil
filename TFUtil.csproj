@@ -7,7 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Description>Programa desenvolvido para auxiliar no desenvolvimento de projetos no Bradesco Terminal Financeiro.</Description>
+    <Description>Programa desenvolvido para auxiliar no desenvolvimento de projetos no Bradesco Terminal Financeiro.
+
+Agradecimentos: Daniel Junqueira; Elisson Barbieri;</Description>
     <Authors>João Paulo de A. Porto</Authors>
   </PropertyGroup>
 
