@@ -99,8 +99,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tableLayoutPanel1);
-            splitContainer1.Size = new Size(1237, 576);
-            splitContainer1.SplitterDistance = 918;
+            splitContainer1.Size = new Size(1275, 576);
+            splitContainer1.SplitterDistance = 956;
             splitContainer1.TabIndex = 0;
             // 
             // richTextBox1
@@ -110,10 +110,11 @@
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(914, 572);
+            richTextBox1.Size = new Size(952, 572);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
+            richTextBox1.KeyDown += richTextBox1_KeyDown;
             // 
             // tableLayoutPanel1
             // 
@@ -245,16 +246,16 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 5;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.333332F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6666679F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.6666679F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8.333332F));
-            tableLayoutPanel2.Controls.Add(killtfBtn, 3, 2);
-            tableLayoutPanel2.Controls.Add(localwkstBtn, 1, 0);
-            tableLayoutPanel2.Controls.Add(logBtn, 1, 2);
-            tableLayoutPanel2.Controls.Add(workspaceBtn, 3, 0);
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.8805962F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 9F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.1194038F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.Controls.Add(killtfBtn, 2, 2);
+            tableLayoutPanel2.Controls.Add(localwkstBtn, 0, 0);
+            tableLayoutPanel2.Controls.Add(logBtn, 0, 2);
+            tableLayoutPanel2.Controls.Add(workspaceBtn, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 27);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -269,11 +270,11 @@
             // 
             killtfBtn.Cursor = Cursors.Hand;
             killtfBtn.Dock = DockStyle.Fill;
-            killtfBtn.Location = new Point(154, 67);
+            killtfBtn.Location = new Point(151, 67);
             killtfBtn.Name = "killtfBtn";
-            killtfBtn.Size = new Size(112, 51);
+            killtfBtn.Size = new Size(141, 51);
             killtfBtn.TabIndex = 20;
-            killtfBtn.Text = "kill TF";
+            killtfBtn.Text = "💀 kill TF";
             killtfBtn.UseVisualStyleBackColor = true;
             killtfBtn.Click += killtfBtn_Click;
             // 
@@ -281,11 +282,11 @@
             // 
             localwkstBtn.Cursor = Cursors.Hand;
             localwkstBtn.Dock = DockStyle.Fill;
-            localwkstBtn.Location = new Point(26, 3);
+            localwkstBtn.Location = new Point(3, 3);
             localwkstBtn.Name = "localwkstBtn";
-            localwkstBtn.Size = new Size(112, 50);
+            localwkstBtn.Size = new Size(133, 50);
             localwkstBtn.TabIndex = 18;
-            localwkstBtn.Text = "localwkst";
+            localwkstBtn.Text = "🗁 localwkst";
             localwkstBtn.UseVisualStyleBackColor = true;
             localwkstBtn.Click += localwkstBtn_Click;
             // 
@@ -293,11 +294,11 @@
             // 
             logBtn.Cursor = Cursors.Hand;
             logBtn.Dock = DockStyle.Fill;
-            logBtn.Location = new Point(26, 67);
+            logBtn.Location = new Point(3, 67);
             logBtn.Name = "logBtn";
-            logBtn.Size = new Size(112, 51);
+            logBtn.Size = new Size(133, 51);
             logBtn.TabIndex = 17;
-            logBtn.Text = "log";
+            logBtn.Text = "🗎 log";
             logBtn.UseVisualStyleBackColor = true;
             logBtn.Click += logBtn_Click;
             // 
@@ -305,11 +306,11 @@
             // 
             workspaceBtn.Cursor = Cursors.Hand;
             workspaceBtn.Dock = DockStyle.Fill;
-            workspaceBtn.Location = new Point(154, 3);
+            workspaceBtn.Location = new Point(151, 3);
             workspaceBtn.Name = "workspaceBtn";
-            workspaceBtn.Size = new Size(112, 50);
+            workspaceBtn.Size = new Size(141, 50);
             workspaceBtn.TabIndex = 19;
-            workspaceBtn.Text = "workspace";
+            workspaceBtn.Text = "🗁 workspace";
             workspaceBtn.UseVisualStyleBackColor = true;
             workspaceBtn.Click += workspaceBtn_Click;
             // 
@@ -366,7 +367,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripDropDownButton1, toolStripDropDownButton2, toolStripDropDownButton3 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1237, 34);
+            toolStrip1.Size = new Size(1275, 34);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -465,7 +466,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 34);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1237, 576);
+            panel2.Size = new Size(1275, 576);
             panel2.TabIndex = 2;
             // 
             // openFileDialog1
@@ -481,13 +482,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1237, 610);
+            ClientSize = new Size(1275, 610);
             Controls.Add(panel2);
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             helpProvider1.SetShowHelp(this, true);
-            Text = "TF Util (Beta V1.5)";
+            Text = "TF Util (1.6b)";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             splitContainer1.Panel1.ResumeLayout(false);

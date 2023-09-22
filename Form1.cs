@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TFUtil;
@@ -17,8 +18,6 @@ namespace TFCopyUtil
         static string defaultEditorPath = @"C:\Windows\notepad.exe";
         string destinationRootFolder;
 
-        AboutBox1 aboutBox1 = new AboutBox1();
-
         public Form1()
         {
             InitializeComponent();
@@ -26,31 +25,8 @@ namespace TFCopyUtil
             richTextBox1.AllowDrop = true;
         }
 
-        private void colorLine(int lineNumber, Color newColor)
-        {
-            string line = richTextBox1.Lines[lineNumber];
-            int startIndex = richTextBox1.GetFirstCharIndexFromLine(lineNumber);
-            int length = richTextBox1.Lines[lineNumber].Length;
 
-            richTextBox1.Select(startIndex, length);
-            richTextBox1.SelectionColor = newColor;
-            richTextBox1.SelectionStart = richTextBox1.Text.Length;
-            richTextBox1.ScrollToCaret();
-        }
-
-        private void refreshLines()
-        {
-            int i = 0;
-            foreach (string line in richTextBox1.Lines)
-            {
-                if (line.StartsWith("//"))
-                    colorLine(i, Color.DarkGray);
-                else
-                    colorLine(i, Color.Black);
-                i++;
-            }
-        }
-
+        #region Settings
         public string loadCfg()
         {
             string cfgFileContent = "";
@@ -66,6 +42,9 @@ namespace TFCopyUtil
                     cfgFileContent = "C:\\CLIENT\nC:\\workspaceFDDB\nC:\\Windows\\notepad.exe";
                     writer.Write(cfgFileContent);
                 }
+
+                PreferenciasForm preferenciasForm = new PreferenciasForm();
+                preferenciasForm.Show(this);
             }
             catch (Exception ex)
             {
@@ -110,7 +89,31 @@ namespace TFCopyUtil
                 MessageBox.Show($"Ocorreu um erro: {ex.Message}");
             }
         }
+        #endregion
 
+        #region RichTextBox
+        private void colorLine(int lineNumber, Color newColor)
+        {
+            string line = richTextBox1.Lines[lineNumber];
+            int startIndex = richTextBox1.GetFirstCharIndexFromLine(lineNumber);
+            int length = richTextBox1.Lines[lineNumber].Length;
+
+            richTextBox1.Select(startIndex, length);
+            richTextBox1.SelectionColor = newColor;
+            richTextBox1.SelectionLength = 0;
+        }
+        private void refreshLines()
+        {
+            int i = 0;
+            foreach (string line in richTextBox1.Lines)
+            {
+                if (line.StartsWith("//"))
+                    colorLine(i, Color.DarkGray);
+                else
+                    colorLine(i, Color.Black);
+                i++;
+            }
+        }
         private void richTextBox1_DragDrop(object? sender, DragEventArgs e)
         {
             object files = e.Data.GetData("FileDrop");
@@ -123,8 +126,70 @@ namespace TFCopyUtil
                 }
             }
         }
+        private void savePaths()
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Arquivos de Texto|*.txt|Todos os Arquivos|*.*";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+            }
+        }
+        private void commentLine(int n)
+        {
+            //descomentar
+            if (richTextBox1.Lines[n].StartsWith("//"))
+            {
+                if (richTextBox1.Lines[n].Length >= 2)
+                {
+                    richTextBox1.Select(richTextBox1.GetFirstCharIndexFromLine(n), 2);
+                    richTextBox1.SelectedText = "";
+                    colorLine(n, Color.Black);
+                }
+            }
+            else  //comentar 
+            {
+                richTextBox1.SelectionStart = richTextBox1.GetFirstCharIndexFromLine(n);
+                richTextBox1.SelectedText = "//";
+                colorLine(n, Color.DarkGray);
+            }
+        }
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //atalho salvar arquivo ctrl s
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                savePaths();
+                e.Handled = true;
+            }
 
-        #region Menu Superior
+            //atalho comentar ctrl k ou ctrl ;
+            if (e.Control && (e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.K || ((int)e.KeyCode) == 191))
+            {
+                int startLine = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart);
+                int endLine = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart + richTextBox1.SelectionLength);
+
+                richTextBox1.SelectionLength = 0;
+
+                //multipla-seleção de linhas
+                if (startLine != endLine)
+                {
+                    for (int n = startLine; n < endLine + 1; n++)
+                    {
+                        commentLine(n);
+                    }
+                }
+                else  //linha simples
+                {
+                    commentLine(startLine);
+                }
+
+                e.Handled = true;
+            }
+        }
+        #endregion
+
+        #region Menu
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -133,6 +198,7 @@ namespace TFCopyUtil
 
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AboutBox1 aboutBox1 = new AboutBox1();
             aboutBox1.Show();
         }
 
@@ -163,17 +229,7 @@ namespace TFCopyUtil
 
         private void salvarComoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.Filter = "Text Files|*.txt";
-            saveFileDialog.Title = "Save Text File";
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-            {
-                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
-                {
-                    writer.Write(richTextBox1.Text);
-                }
-            }
+            savePaths();
         }
 
         private void preferênciasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -408,12 +464,21 @@ namespace TFCopyUtil
                 {
                     try
                     {
-                        relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf("workspaceFDDB"));
+                        string[] directories = defaultWorkspacePath.Split(Path.DirectorySeparatorChar);
+                        string workspaceFolderName = directories[directories.Length - 1];
+                        relativePath = sourceFilePath.Substring(sourceFilePath.IndexOf(workspaceFolderName));
                         destinationFilePath = Path.Combine(destinationRootFolder, relativePath);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                        if (relativePath == "")
+                        {
+                            MessageBox.Show($"Não foi possível encontrar o caminho na workspace: {defaultWorkspacePath}");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Ocorreu um erro: {ex.Message}");
+                        }
                         return;
                     }
                 }
